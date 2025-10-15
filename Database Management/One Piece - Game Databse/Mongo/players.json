@@ -1,0 +1,90 @@
+[{
+  "_id": {
+    "$oid": "67eefc9d96785b07199b5161"
+  },
+  "name": "Luffy",
+  "role": "Captain",
+  "level": 45,
+  "coins": 3200,
+  "membership": "VIP"
+},
+{
+  "_id": {
+    "$oid": "67eefc9d96785b07199b5162"
+  },
+  "name": "Zoro",
+  "role": "Swordsman",
+  "level": 40,
+  "coins": 2900,
+  "membership": "VIP"
+},
+{
+  "_id": {
+    "$oid": "67eefc9d96785b07199b5163"
+  },
+  "name": "Sanji",
+  "role": "Chef",
+  "level": 39,
+  "coins": 2500,
+  "membership": "VIP"
+},
+{
+  "_id": {
+    "$oid": "67eefc9d96785b07199b5164"
+  },
+  "name": "Nami",
+  "role": "Navigator",
+  "level": 21,
+  "coins": 4000,
+  "membership": "Regular"
+},
+{
+  "_id": {
+    "$oid": "67eefc9d96785b07199b5165"
+  },
+  "name": "Jimbe",
+  "role": "Helsman",
+  "level": 36,
+  "coins": 3000,
+  "membership": "VIP"
+},
+{
+  "_id": {
+    "$oid": "67eefc9d96785b07199b5166"
+  },
+  "name": "Chopper",
+  "role": "Doctor",
+  "level": 22,
+  "coins": 1500,
+  "membership": "Regular"
+},
+{
+  "_id": {
+    "$oid": "67eefc9d96785b07199b5167"
+  },
+  "name": "Robin",
+  "role": "Archeologist",
+  "level": 29,
+  "coins": 3300,
+  "membership": "VIP"
+},
+{
+  "_id": {
+    "$oid": "67eefc9d96785b07199b5168"
+  },
+  "name": "Brook",
+  "role": "Musician",
+  "level": 30,
+  "coins": 1900,
+  "membership": "VIP"
+},
+{
+  "_id": {
+    "$oid": "67eefc9d96785b07199b516a"
+  },
+  "name": "Franky",
+  "role": "Shipwright",
+  "level": 32,
+  "coins": 3100,
+  "membership": "VIP"
+}]

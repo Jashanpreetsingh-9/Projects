@@ -1,0 +1,77 @@
+[{
+  "_id": {
+    "$oid": "67ef0f6296785b07199b517e"
+  },
+  "villain_name": "Crocodile",
+  "difficulty_level": 20
+},
+{
+  "_id": {
+    "$oid": "67ef0f6296785b07199b517f"
+  },
+  "villain_name": "Eneru",
+  "difficulty_level": 25
+},
+{
+  "_id": {
+    "$oid": "67ef0f6296785b07199b5180"
+  },
+  "villain_name": "Rob Lucci",
+  "difficulty_level": 25
+},
+{
+  "_id": {
+    "$oid": "67ef0f6296785b07199b5181"
+  },
+  "villain_name": "Donquixote Doflamingo",
+  "difficulty_level": 35
+},
+{
+  "_id": {
+    "$oid": "67ef0f6296785b07199b5182"
+  },
+  "villain_name": "Arlong",
+  "difficulty_level": 15
+},
+{
+  "_id": {
+    "$oid": "67ef0f6296785b07199b5183"
+  },
+  "villain_name": "Hordy",
+  "difficulty_level": 30
+},
+{
+  "_id": {
+    "$oid": "67ef0f6296785b07199b5184"
+  },
+  "villain_name": "Akainu",
+  "difficulty_level": 40
+},
+{
+  "_id": {
+    "$oid": "67ef0f6296785b07199b5185"
+  },
+  "villain_name": "Kaido",
+  "difficulty_level": 45
+},
+{
+  "_id": {
+    "$oid": "67ef0f6296785b07199b5186"
+  },
+  "villain_name": "Charlote Linlin",
+  "difficulty_level": 40
+},
+{
+  "_id": {
+    "$oid": "67ef0f6296785b07199b5187"
+  },
+  "villain_name": "Black Beard",
+  "difficulty_level": 45
+},
+{
+  "_id": {
+    "$oid": "67ef0f6296785b07199b5188"
+  },
+  "villain_name": "Imu",
+  "difficulty_level": 99
+}]

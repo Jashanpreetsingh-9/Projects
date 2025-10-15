@@ -1,0 +1,63 @@
+[{
+  "_id": {
+    "$oid": "67ef0a5596785b07199b5175"
+  },
+  "island_name": "Logue Town",
+  "location": "East Blue"
+},
+{
+  "_id": {
+    "$oid": "67ef0a5596785b07199b5176"
+  },
+  "island_name": "Wano",
+  "location": "Grand Line"
+},
+{
+  "_id": {
+    "$oid": "67ef0a5596785b07199b5177"
+  },
+  "island_name": "Goa Kindom",
+  "location": "East Blue"
+},
+{
+  "_id": {
+    "$oid": "67ef0a5596785b07199b5178"
+  },
+  "island_name": "Alabasta",
+  "location": "Grand Line"
+},
+{
+  "_id": {
+    "$oid": "67ef0a5596785b07199b5179"
+  },
+  "island_name": "Germa Kingdom",
+  "location": "North Blue"
+},
+{
+  "_id": {
+    "$oid": "67ef0a5596785b07199b517a"
+  },
+  "island_name": "Mary Geoise",
+  "location": "Red Line"
+},
+{
+  "_id": {
+    "$oid": "67ef0a5596785b07199b517b"
+  },
+  "island_name": "Skypiea",
+  "location": "Sky Islands"
+},
+{
+  "_id": {
+    "$oid": "67ef0a5596785b07199b517c"
+  },
+  "island_name": "Whole Cake Island",
+  "location": "Grand Line"
+},
+{
+  "_id": {
+    "$oid": "67ef0a5596785b07199b517d"
+  },
+  "island_name": "Laughtale",
+  "location": "Unknown"
+}]

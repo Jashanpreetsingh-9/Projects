@@ -1,0 +1,90 @@
+[{
+  "_id": {
+    "$oid": "67ef013296785b07199b516b"
+  },
+  "item_name": "Gum-Gum Fruit",
+  "item_type": "Devil Fruit",
+  "price": 2500,
+  "rarity": "Legendary"
+},
+{
+  "_id": {
+    "$oid": "67ef013296785b07199b516c"
+  },
+  "item_name": "Enma(Sword)",
+  "item_type": "weapon",
+  "price": 1500,
+  "rarity": "Legendary"
+},
+{
+  "_id": {
+    "$oid": "67ef013296785b07199b516d"
+  },
+  "item_name": "Climate-Tact",
+  "item_type": "weapon",
+  "price": 230,
+  "rarity": "Common"
+},
+{
+  "_id": {
+    "$oid": "67ef013296785b07199b516e"
+  },
+  "item_name": "Hana Hana Fruit",
+  "item_type": "Devil Fruit",
+  "price": 450,
+  "rarity": "Rare"
+},
+{
+  "_id": {
+    "$oid": "67ef013296785b07199b516f"
+  },
+  "item_name": "Rumble Ball",
+  "item_type": "medicine",
+  "price": 100,
+  "rarity": "Common"
+},
+{
+  "_id": {
+    "$oid": "67ef013296785b07199b5170"
+  },
+  "item_name": "Germa 66 Suit",
+  "item_type": "weapon",
+  "price": 940,
+  "rarity": "Legendary"
+},
+{
+  "_id": {
+    "$oid": "67ef013296785b07199b5171"
+  },
+  "item_name": "Revive Revive Fruit",
+  "item_type": "Devil Fruit",
+  "price": 500,
+  "rarity": "Rare"
+},
+{
+  "_id": {
+    "$oid": "67ef013296785b07199b5172"
+  },
+  "item_name": "Energy Steroid",
+  "item_type": "medicine",
+  "price": 320,
+  "rarity": "Rare"
+},
+{
+  "_id": {
+    "$oid": "67ef013296785b07199b5173"
+  },
+  "item_name": "Human Human Fruit: Reindeer",
+  "item_type": "Devil Fruit",
+  "price": 125,
+  "rarity": "Common"
+},
+{
+  "_id": {
+    "$oid": "67ef013296785b07199b5174"
+  },
+  "item_name": "General Franky",
+  "item_type": "weapon",
+  "price": 600,
+  "rarity": "Rare"
+}]
