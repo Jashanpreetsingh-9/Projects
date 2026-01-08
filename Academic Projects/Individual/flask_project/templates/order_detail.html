@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="banner order-banner">
+    <h1>Order #{{ order.id }}</h1>
+</div>
+
+<div class="banner customer-banner">
+    <p><b>Customer:</b> {{ order.customer.customer_name }}</p>
+    <p><b>Phone:</b> {{ order.customer.phone }}</p>
+</div>
+
+<div class="banner status-banner">
+    <p><b>Status:</b>
+        {% if order.completed %}
+            <span class="status-completed">Completed ({{ order.completed }})</span>
+        {% else %}
+            <span class="status-pending">Pending</span>
+        {% endif %}
+    </p>
+</div>
+
+<h2>Items</h2>
+
+<table>
+    <tr>
+        <th>Product</th>
+        <th>Qty</th>
+        <th>Price</th>
+        <th>Total</th>
+    </tr>
+
+    {% for item in order.items %}
+    <tr>
+        <td>{{ item.product.product_name }}</td>
+        <td>{{ item.quantity }}</td>
+        <td>${{ "%.2f"|format(item.product.price) }}</td>
+        <td>${{ "%.2f"|format(item.product.price * item.quantity) }}</td>
+    </tr>
+    {% endfor %}
+</table>
+
+{% if order.completed %}
+    <h3>Total Amount: ${{ "%.2f"|format(order.amount) }}</h3>
+{% else %}
+    <form action="{{ url_for('order_complete', id=order.id) }}" method="post">
+        <button type="submit">Complete Order</button>
+    </form>
+{% endif %}
+
+{% endblock %}

@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Customers</h1>
+
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Phone</th>
+        <th>Pending</th>
+        <th>Completed</th>
+    </tr>
+
+    {% for c in customers %}
+    <tr>
+        <td><a href="{{ url_for('customer_detail', id=c.id) }}">#{{ c.id }}</a></td>
+        <td>{{ c.customer_name }}</td>
+        <td>{{ c.phone }}</td>
+        <td>{{ c.pending_orders()|length }}</td>
+        <td>{{ c.completed_orders()|length }}</td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock %}

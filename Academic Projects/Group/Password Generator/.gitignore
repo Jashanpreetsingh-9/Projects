@@ -1,0 +1,12 @@
+__pycache__/
+venv/
+env/
+*.csv
+master.hash
+salt.bin
+.pytest_cache
+build
+dist
+app.spec
+*.json
+*.enc

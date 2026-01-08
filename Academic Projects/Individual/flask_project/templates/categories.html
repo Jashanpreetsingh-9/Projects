@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>All Categories</h1>
+
+<table>
+    <tr>
+        <th>Name</th>
+        <th>Total Products</th>
+        <th>View</th>
+    </tr>
+
+    {% for c in categories %}
+    <tr>
+        <td>{{ c.category_name }}</td>
+        <td>{{ c.products|length }}</td>
+        <td><a href="{{ url_for('category_detail', name=c.category_name) }}">Open</a></td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock %}
