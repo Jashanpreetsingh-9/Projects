@@ -1,6 +1,6 @@
 # Project Repository
 
-This repository contains the source code, assets, and documentation for all my projects. It serves as a central place to organize development work, track changes, and manage updates over time.
+This repository contains the source code, assets, and documentation for some of my best projects. It serves as a central place to organize development work, track changes, and manage updates over time.
 
 ## Features
 - Clear project structure
