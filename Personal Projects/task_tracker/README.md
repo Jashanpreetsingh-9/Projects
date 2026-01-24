@@ -46,4 +46,4 @@ The frontend will be available at:
 ```http://localhost:3000```
 
 
-## Thank you very much. I hope you find it helpful : )
+## This project is open for improvement and extension.
