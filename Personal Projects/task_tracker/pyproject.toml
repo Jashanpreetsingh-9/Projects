@@ -1,0 +1,47 @@
+[project]
+name = "task-tracker"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.14"
+dependencies = [
+    "argon2-cffi==25.1.0",
+    "argon2-cffi-bindings==25.1.0",
+    "blinker==1.9.0",
+    "cffi==2.0.0",
+    "click==8.3.1",
+    "colorama==0.4.6",
+    "cryptography==46.0.3",
+    "distlib==0.4.0",
+    "filelock==3.20.2",
+    "flask==2.3.3",
+    "flask-cors>=6.0.2",
+    "flask-sqlalchemy==3.1.1",
+    "greenlet==3.3.0",
+    "iniconfig==2.3.0",
+    "inquirerpy==0.3.4",
+    "itsdangerous==2.2.0",
+    "jaraco-classes==3.4.0",
+    "jaraco-context==6.0.2",
+    "jaraco-functools==4.4.0",
+    "jinja2==3.1.6",
+    "keyring==25.7.0",
+    "markupsafe==3.0.3",
+    "more-itertools==10.8.0",
+    "packaging==25.0",
+    "pfzy==0.3.4",
+    "platformdirs==4.5.1",
+    "pluggy==1.6.0",
+    "prompt-toolkit==3.0.52",
+    "pycparser==2.23",
+    "pyfiglet==1.0.4",
+    "pygments==2.19.2",
+    "pyperclip==1.11.0",
+    "pytest==9.0.2",
+    "pywin32-ctypes==0.2.3",
+    "sqlalchemy==2.0.45",
+    "typing-extensions==4.15.0",
+    "virtualenv==20.36.0",
+    "wcwidth==0.2.14",
+    "werkzeug==3.1.4",
+]

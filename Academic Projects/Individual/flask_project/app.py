@@ -1,7 +1,7 @@
 from flask import Flask, render_template, redirect
 from sqlalchemy import select
 from db import db
-from models import Product, Category, Customer, Order, ProductOrder
+from models import Product, Category, Customer, Order
 from pathlib import Path
 
 app = Flask(__name__)
