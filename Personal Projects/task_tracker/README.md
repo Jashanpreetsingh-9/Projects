@@ -16,17 +16,30 @@ I built this project because most task apps focus on one‑time to‑dos. Recurr
 - React frontend for interaction
 
 ## Running the Project
+
+### Prerequisites
+1. Create and activate a virtual environment:
+```shell
+python -m venv .venv
+source .venv/bin/activate        # Linux/macOS
+.venv\Scripts\activate           # Windows
+```
+2. Install dependencies:
+```shell
+pip install -r requirements.txt
+```
+
+
 ### Backend (Flask)
 1. Navigate to the backend directory:
-```cd backend```
-2. Create and activate a virtual environment:
-```python -m venv .venv
-source .venv/bin/activate        # Windows: .venv\Scripts\activate
+```shell
+cd backend
 ```
-3. Install dependencies:
-```pip install -r requirements.txt```
-4. Start the server:
-```flask run```
+
+2. Start the server:
+```python
+py main.py
+```
 
 
 The backend will be available at:
@@ -36,11 +49,18 @@ The backend will be available at:
 
 ### Frontend (React)
 1. Navigate to the frontend directory:
-```cd frontend```
+```shell
+cd frontend
+```
 2. Install dependencies:
-```npm install```
+```shell
+npm install
+```
+
 3. Start the development server:
-```npm start```
+```shell
+npm start
+```
 
 The frontend will be available at:
 ```http://localhost:3000```
