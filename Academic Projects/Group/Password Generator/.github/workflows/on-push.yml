@@ -19,7 +19,11 @@ jobs:
 
     permissions:
       contents: read
-      
+
+    defaults:
+      run:
+        working-directory: "Academic Projects/Group/Password Generator"
+
     steps:
       - uses: actions/checkout@v4
 
@@ -28,7 +32,7 @@ jobs:
         with:
           python-version: ${{ matrix.python-version }}
 
-      - name: In]stall dependencies
+      - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
           pip install flake8 pytest
@@ -40,16 +44,17 @@ jobs:
           flake8 pwtool --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
 
       - name: Test with pytest (pwtool only)
-        run: |
-          pytest pwtool
+        run: pytest pwtool
 
   create-pull-request:
     needs: build
     runs-on: ubuntu-latest
     if: ${{ success() && github.ref_name != 'main' }}
+
     permissions:
       contents: read
       pull-requests: write
+
     steps:
       - uses: actions/checkout@v4
 
