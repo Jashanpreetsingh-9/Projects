@@ -5,9 +5,9 @@ on:
     branches:
       - "**"
     paths:
-      - "pwtool/**"
-      - "requirements.txt"
-      - ".github/workflows/pwtool*.yml"
+      - "Academic Projects/Group/Password Generator/pwtool/**"
+      - "Academic Projects/Group/Password Generator/requirements.txt"
+      - ".github/workflows/**"
 
 jobs:
   build:
