@@ -50,6 +50,7 @@ jobs:
     needs: build
     runs-on: ubuntu-latest
     if: ${{ success() && github.ref_name != 'main' }}
+
     permissions:
       contents: read
       pull-requests: write
