@@ -1,71 +1,42 @@
-# Enterprise Multi-Site Network Infrastructure Simulation
+# Enterprise Multi-Site Network Simulation with OSPF and WAN Resilience Testing
 
 ## Overview
 
 This project simulates a two-site enterprise network using Ubuntu Server virtual machines in VirtualBox.
 
-The environment models:
+The objective was to design, implement, validate, and analyze a routed multi-site network using:
 
-- A Head Office (LAN1)
-- A Remote Store (LAN2)
-- A routed WAN link between sites
-- Dynamic routing using OSPF (BIRD 1.6)
-- Distributed DHCP services using Kea DHCPv4
-- WAN failure simulation and automatic reconvergence
+- OSPF dynamic routing (BIRD 1.6)
+- Distributed DHCP services (Kea DHCPv4)
+- Packet-level traffic inspection
+- WAN failure simulation
+- WAN degradation (loss and latency) testing
+- Control-plane and data-plane validation
 
-Static routing was initially implemented for baseline connectivity and later removed after successful OSPF deployment.
+The lab was structured to replicate realistic enterprise WAN conditions and observe routing protocol behavior under impairment.
 
 ---
 
-## Logical Topology
+## Network Topology
 
 ```
-Client1 (LAN1)
-    |
-    | 192.168.10.0/24
-    |
-   r1
-    |
-    | 10.0.0.0/30 (WAN - OSPF)
-    |
-   r2
-    |
-    | 192.168.20.0/24
-    |
-Client2 (LAN2)
+Client1 (192.168.10.0/24)
+        |
+        | LAN1
+        |
+       r1
+        | 10.0.0.0/30 (WAN - OSPF)
+       r2
+        |
+        | LAN2
+        |
+Client2 (192.168.20.0/24)
 ```
 
----
-
-## IP Addressing Plan
-
-### WAN Network
-`10.0.0.0/30`
-
-| Device | Interface | IP Address |
-|--------|-----------|------------|
-| r1     | enp0s3    | 10.0.0.1/30 |
-| r2     | enp0s3    | 10.0.0.2/30 |
-
----
-
-### Head Office LAN (LAN1)
-`192.168.10.0/24`
-
-| Device   | Interface | Addressing |
-|----------|-----------|------------|
-| r1       | enp0s8    | 192.168.10.1/24 |
-| client1  | enp0s3    | DHCP (192.168.10.50–100 pool) |
-
----
-
-### Remote Store LAN (LAN2)
-`192.168.20.0/24`
-
-| Device   | Interface | Addressing |
-|----------|-----------|------------|
-| r2       | enp0s8    | 192.168.20.1/24 |
-| client2  | enp0s3    | DHCP (192.168.20.50–100 pool) |
+- r1 and r2 connected via routed WAN link
+- OSPF area 0 running between routers
+- Independent DHCP per site
+- NAT interfaces used only for package installation
 
 ---
 
@@ -75,191 +46,251 @@ Client2 (LAN2)
 - VirtualBox
 - BIRD 1.6 (OSPFv2)
 - Kea DHCPv4
-- Netplan
-- Linux networking tools:
-  - ip
-  - systemctl
-  - journalctl
-  - birdc
+- tcpdump
+- tc (netem)
+- systemctl
+- iproute2
 
 ---
 
-## Dynamic Routing Implementation (OSPF)
+# OSPF Implementation
 
-Dynamic routing was implemented using BIRD 1.6 with OSPFv2.
+Dynamic routing was implemented using BIRD (OSPFv2).
 
-### Objectives
+### OSPF Adjacency (r1)
 
-- Establish OSPF adjacency between r1 and r2
-- Exchange LSAs
-- Dynamically learn remote LAN routes
-- Remove static routes
-- Ensure automatic reconvergence during failure
-
----
-
-### OSPF Verification
-
-Check neighbor state:
-
-```bash
+```
 sudo birdc show ospf neighbors
 ```
+![image1](/images/1.png)
 
-Expected:
-- State: FULL
-- Adjacency stable
+State: FULL/DR
 
-Check learned routes:
+### OSPF Adjacency (r2)
 
-```bash
-sudo birdc show route
 ```
+sudo birdc show ospf neighbors
+```
+![image2](/images/2.png)
+
+State: FULL/BDR
+
+This confirms successful database synchronization and adjacency formation.
+
+---
+
+## Dynamic Route Propagation
 
 On r1:
-- 192.168.20.0/24 via 10.0.0.2
+
+```
+sudo birdc show route | grep 192.168.20
+```
+![image3](/images/3.png)
+
+Route learned dynamically via OSPF:
+
+```
+192.168.20.0/24 via 10.0.0.2
+```
 
 On r2:
-- 192.168.10.0/24 via 10.0.0.1
 
-This confirms successful dynamic route exchange.
+```
+sudo birdc show route | grep 192.168.10
+```
+![image4](/images/4.png)
+
+Route learned dynamically via OSPF:
+
+```
+192.168.10.0/24 via 10.0.0.1
+```
+
+Static routes were removed after OSPF validation.
 
 ---
 
-## DHCP Implementation (Kea)
+# DHCP Implementation
 
-Distributed DHCP services were deployed independently on each router.
+Each site runs its own Kea DHCP service.
 
----
+### r1 DHCP Lease Proof
 
-### LAN1 (r1)
-
-- Subnet: 192.168.10.0/24
-- Pool: 192.168.10.50 – 192.168.10.100
-- Default Gateway: 192.168.10.1
-- DNS Server: 8.8.8.8
-
-Verify leases:
-
-```bash
+```
 cat /var/lib/kea/kea-leases4.csv
 ```
+![image5](/images/5.png)
 
-Client1 receives dynamic address (example: 192.168.10.50).
+Client1 dynamically assigned IP from 192.168.10.0/24 pool.
 
----
+### r2 DHCP Lease Proof
 
-### LAN2 (r2)
-
-- Subnet: 192.168.20.0/24
-- Pool: 192.168.20.50 – 192.168.20.100
-- Default Gateway: 192.168.20.1
-- DNS Server: 8.8.8.8
-
-Client2 receives dynamic address from r2.
-
----
-
-## End-to-End Validation
-
-### Control Plane Validation
-
-- OSPF adjacency FULL
-- Dynamic route exchange confirmed
-- Static routes removed
-
-### Data Plane Validation
-
-From client1:
-
-```bash
-ping 192.168.20.1
-ping 192.168.20.50
 ```
-
-From client2:
-
-```bash
-ping 192.168.10.1
-ping 192.168.10.50
+cat /var/lib/kea/kea-leases4.csv
 ```
+![image6](/images/6.png)
 
-Result:
-- Successful bidirectional communication
-- Correct default gateway assignment via DHCP
-- Functional inter-site routing
+Client2 dynamically assigned IP from 192.168.20.0/24 pool.
+
+This design avoids cross-site broadcast dependency.
 
 ---
 
-## WAN Failure Simulation & OSPF Reconvergence
+# Control Plane vs Data Plane Validation
 
-To validate resiliency, WAN failure was simulated.
+## Control Plane
 
-### Step 1 — Bring Down WAN Interface
+- OSPF adjacency FULL on both routers
+- LSAs exchanged successfully
+- Dynamic routes installed in routing table
 
-On r1:
+## Data Plane
 
-```bash
+Packet capture performed using:
+#### r1
+```
+sudo tcpdump -i enp0s3 icmp
+```
+![image7](/images/7.png)
+Observed:
+
+- ICMP echo request from 192.168.10.50
+- ICMP echo reply from 192.168.20.1
+- No packet drops at kernel level  
+
+---
+
+### r2
+![image8](/images/8.png)
+Observed:
+
+- ICMP echo request from 192.168.20.50
+- ICMP echo reply from 192.168.10.1
+- No packet drops at kernel level  
+
+Confirmed end-to-end routing at packet level.
+
+---
+
+# WAN Failure Simulation
+
+Hard failure simulated:
+
+```
 sudo ip link set enp0s3 down
 ```
 
 Observed:
+
 - OSPF adjacency dropped
 - Remote routes withdrawn
-- Inter-site connectivity lost
+- Inter-site connectivity interrupted
 
----
+After restoring interface:
 
-### Step 2 — Restore WAN Interface
-
-```bash
+```
 sudo ip link set enp0s3 up
 ```
 
-Observed:
-- OSPF adjacency re-established (FULL state)
+- OSPF re-established FULL state
 - Routes dynamically reinstalled
 - Connectivity restored automatically
 
 ---
 
-## Project Validation Summary
+# WAN Degradation Simulation (Packet Loss)
 
-- Multi-site routing operational
-- OSPF adjacency stable
-- Distributed DHCP functional
-- Static routing removed
-- End-to-end connectivity verified
-- WAN failure simulation successful
-- Automatic reconvergence confirmed
+Simulated 15% packet loss on WAN:
+
+```
+sudo tc qdisc add dev enp0s3 root netem loss 15%
+```
+
+Verification:
+
+```
+tc qdisc show dev enp0s3
+```
+![image9](/images/9.png)
+
+Client1 ping results:
+![image10](/images/10.png)
+
+- ~15% packet loss observed
+- Increased RTT variability
+
+Despite degradation:
+
+```
+sudo birdc show ospf neighbors
+```
+
+OSPF adjacency remained FULL.
+
+Conclusion:
+
+Data plane degraded, control plane remained stable.
 
 ---
 
-## Engineering Reflection
+# WAN Latency & Jitter Simulation
 
-This project demonstrates:
+Simulated WAN delay:
 
-- Control plane vs data plane separation
-- Dynamic route propagation using OSPF
-- Independent DHCP domains per site
-- Fault tolerance via automatic reconvergence
-- Scalable multi-site architecture design
+```
+sudo tc qdisc add dev enp0s3 root netem delay 80ms 20ms
+```
 
----
+Observed:
 
-## Future Enhancements
+- Increased ping RTT from baseline (~1–2 ms) to ~80+ ms
+- OSPF adjacency remained FULL
+- No routing reconvergence triggered
 
-- Add third router (multi-site expansion)
-- Implement firewall segmentation
-- Introduce VLAN separation
-- Configure multi-area OSPF
-- Measure and document convergence timing analytically
+This demonstrates routing protocol resilience under latency conditions.
 
 ---
 
-## Current Status
+# Key Findings
 
-Network fully operational  
-Dynamic routing verified  
-Failure recovery tested  
-Enterprise multi-site simulation complete  
+- OSPF maintained stable adjacency under moderate packet loss
+- OSPF maintained stability under added latency and jitter
+- Dynamic route withdrawal occurred correctly during hard link failure
+- Data plane performance degraded predictably under impairment
+- Distributed DHCP isolated broadcast domains per site
+
+---
+
+# Skills Demonstrated
+
+- Dynamic routing configuration (OSPFv2)
+- Enterprise WAN simulation
+- Control-plane validation
+- Data-plane packet analysis
+- Traffic impairment simulation using tc netem
+- Routing behavior analysis under failure conditions
+- Linux network diagnostics
+- Service management and log inspection
+
+---
+
+# Engineering Reflection
+
+This project demonstrates separation of control and data planes in routed enterprise environments.
+
+Key operational insight:
+
+Routing protocols may remain stable even when the data plane experiences moderate degradation. Hard failures trigger reconvergence, whereas loss and latency within acceptable thresholds do not.
+
+The lab replicates real-world NOC troubleshooting scenarios and provides measurable network behavior under controlled impairment.
+
+---
+
+# Project Status
+
+Fully operational  
+Dynamic routing validated  
+Failure and degradation testing completed  
+Packet-level analysis performed  
+Portfolio-ready network resilience lab  
