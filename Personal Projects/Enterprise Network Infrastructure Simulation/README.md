@@ -62,7 +62,7 @@ Dynamic routing was implemented using BIRD (OSPFv2).
 ```
 sudo birdc show ospf neighbors
 ```
-![image1](/images/1.png)
+![image1](images/1.png)
 
 State: FULL/DR
 
@@ -71,7 +71,7 @@ State: FULL/DR
 ```
 sudo birdc show ospf neighbors
 ```
-![image2](/images/2.png)
+![image2](images/2.png)
 
 State: FULL/BDR
 
@@ -86,7 +86,7 @@ On r1:
 ```
 sudo birdc show route | grep 192.168.20
 ```
-![image3](/images/3.png)
+![image3](images/3.png)
 
 Route learned dynamically via OSPF:
 
@@ -99,7 +99,7 @@ On r2:
 ```
 sudo birdc show route | grep 192.168.10
 ```
-![image4](/images/4.png)
+![image4](images/4.png)
 
 Route learned dynamically via OSPF:
 
@@ -120,7 +120,7 @@ Each site runs its own Kea DHCP service.
 ```
 cat /var/lib/kea/kea-leases4.csv
 ```
-![image5](/images/5.png)
+![image5](images/5.png)
 
 Client1 dynamically assigned IP from 192.168.10.0/24 pool.
 
@@ -129,7 +129,7 @@ Client1 dynamically assigned IP from 192.168.10.0/24 pool.
 ```
 cat /var/lib/kea/kea-leases4.csv
 ```
-![image6](/images/6.png)
+![image6](images/6.png)
 
 Client2 dynamically assigned IP from 192.168.20.0/24 pool.
 
@@ -152,7 +152,7 @@ Packet capture performed using:
 ```
 sudo tcpdump -i enp0s3 icmp
 ```
-![image7](/images/7.png)
+![image7](images/7.png)
 Observed:
 
 - ICMP echo request from 192.168.10.50
@@ -162,7 +162,7 @@ Observed:
 ---
 
 ### r2
-![image8](/images/8.png)
+![image8](images/8.png)
 Observed:
 
 - ICMP echo request from 192.168.20.50
@@ -212,10 +212,10 @@ Verification:
 ```
 tc qdisc show dev enp0s3
 ```
-![image9](/images/9.png)
+![image9](images/9.png)
 
 Client1 ping results:
-![image10](/images/10.png)
+![image10](images/10.png)
 
 - ~15% packet loss observed
 - Increased RTT variability
@@ -293,4 +293,4 @@ Fully operational
 Dynamic routing validated  
 Failure and degradation testing completed  
 Packet-level analysis performed  
-Portfolio-ready network resilience lab  
+Portfolio-ready network resilience lab  SSSSS
