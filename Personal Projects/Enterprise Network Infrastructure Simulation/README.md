@@ -290,11 +290,3 @@ Routing protocols may remain stable even when the data plane experiences moderat
 The lab replicates real-world NOC troubleshooting scenarios and provides measurable network behavior under controlled impairment.
 
 ---
-
-# Project Status
-
-Fully operational  
-Dynamic routing validated  
-Failure and degradation testing completed  
-Packet-level analysis performed  
-Portfolio-ready network resilience lab  SSSSS
