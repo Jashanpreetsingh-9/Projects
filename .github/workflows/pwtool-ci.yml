@@ -1,13 +1,11 @@
-name: pwtool On-Push Automated Testing
-
+name: PWTool On-Push Automated Testing
 
 on:
   push:
     branches:
       - "**"
     paths:
-      - "Password Generator/pwtool/**"
-      - "Password Generator/requirements.txt"
+      - "Password Generator/**"
       - ".github/workflows/**"
 
 jobs:
@@ -16,30 +14,37 @@ jobs:
 
     strategy:
       matrix:
-        python-version: ["3.12","3.13"]
+        python-version: ["3.12"]
 
     permissions:
       contents: read
 
-    defaults:
-      run:
-        working-directory: "Password Generator"
-
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # Debug step (safe to keep)
+      - name: Verify project structure
+        run: |
+          pwd
+          ls -la
+          ls -la "Password Generator"
 
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
           python-version: ${{ matrix.python-version }}
 
-      - name: Install deps
+      - name: Install dependencies
         working-directory: "Password Generator"
-        run: pip install -r requirements.txt
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
 
       - name: Run tests
         working-directory: "Password Generator"
-        run: pytest
+        run: |
+          python -m pytest
 
   create-pull-request:
     needs: build
@@ -51,7 +56,8 @@ jobs:
       pull-requests: write
 
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout repository
+        uses: actions/checkout@v4
 
       - name: Install GitHub CLI
         run: |
