@@ -221,8 +221,9 @@ Client1 ping results:
 
 ![image10](images/10.png)
 
-- ~15% packet loss observed
-- Increased RTT variability
+- Baseline RTT: ~1–2 ms  
+- Impaired RTT: ~80+ ms  
+- Observed packet loss: ~15%
 
 Despite degradation:
 
