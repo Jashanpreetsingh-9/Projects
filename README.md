@@ -1,14 +1,16 @@
-# Project Repository
+# Projects Repository
 
-This repository contains the source code, assets, and documentation for some of my best projects. It serves as a central place to organize development work, track changes, and manage updates over time.
+This repository is a central hub for the source code, assets, and documentation for some of my best projects. It helps me organize work, track changes over time, and present projects in a clear, portfolio-ready format.
 
-## Features
-- Clear project structure
-- Easy to extend or modify
-- Suitable for experiments, prototypes, or full applications
+## Categories
+
+- **Personal** — Projects I build independently to explore ideas, strengthen skills, and learn new technologies.
+- **Team** — Projects built collaboratively, highlighting teamwork, communication, and shared responsibility.
+- **Academic** — Projects completed as part of the BCIT curriculum, demonstrating concepts, techniques, and practical implementation.
 
 ## Getting Started
-Clone the repository and explore the files to understand how everything is organized.
+
+Clone the repository and browse the folders to explore each project.
 
 ```bash
 git clone https://github.com/Jashanpreetsingh-9/Projects.git
