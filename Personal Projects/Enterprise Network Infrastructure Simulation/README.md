@@ -217,7 +217,8 @@ tc qdisc show dev enp0s3
 
 ---
 
-Client1 ping results:
+Client1 ping results:  
+
 ![image10](images/10.png)
 
 - ~15% packet loss observed
