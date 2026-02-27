@@ -55,7 +55,7 @@ Client2 (192.168.20.0/24)
 
 # OSPF Implementation
 
-Dynamic routing was implemented using BIRD (OSPFv2).
+OSPF was selected over static routing to simulate enterprise-scale dynamic routing behavior and to observe reconvergence during link failure and impairment scenarios. Dynamic routing was implemented using BIRD (OSPFv2).
 
 ### OSPF Adjacency (r1)
 
