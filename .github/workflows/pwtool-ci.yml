@@ -5,8 +5,8 @@ on:
     branches:
       - "**"
     paths:
-      - "Academic Projects/Group/Password Generator/pwtool/**"
-      - "Academic Projects/Group/Password Generator/requirements.txt"
+      - "Password Generator/pwtool/**"
+      - "Password Generator/requirements.txt"
       - ".github/workflows/**"
 
 jobs:
@@ -22,7 +22,7 @@ jobs:
 
     defaults:
       run:
-        working-directory: "Academic Projects/Group/Password Generator"
+        working-directory: "Password Generator"
 
     steps:
       - uses: actions/checkout@v4
