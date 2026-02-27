@@ -212,7 +212,10 @@ Verification:
 ```
 tc qdisc show dev enp0s3
 ```
-![image9](images/9.png)
+![image9](images/9.png)  
+
+
+---
 
 Client1 ping results:
 ![image10](images/10.png)
