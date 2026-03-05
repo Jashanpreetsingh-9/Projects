@@ -73,7 +73,7 @@ Each post includes:
 
 ### Frontend
 - React (Create React App)
-- JavaScript (simple React, no TypeScript required initially)
+- JavaScript 
 - React Router
 
 ### Backend
@@ -84,7 +84,7 @@ Each post includes:
 
 ### Database
 - MySQL (Docker local development)
-- Managed deployment ready (AWS RDS / Railway / etc.)
+- Managed deployment ready (AWS RDS)
 
 ### Authentication
 - JWT
